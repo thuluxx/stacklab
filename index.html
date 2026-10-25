@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="StackLab - a beginner-friendly visualizer for the Stack (LIFO) data structure, built with plain HTML, CSS and JavaScript."
+    />
+    <title>StackLab · Stack Data Structure Visualizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <div class="brand-text">
+          <h1>StackLab</h1>
+          <p>Stack Data Structure Visualizer</p>
+        </div>
+      </div>
+
+      <ul class="chips">
+        <li>LIFO</li>
+        <li>Capacity 8</li>
+        <li>Push · Pop · Peek = O(1)</li>
+      </ul>
+    </header>
+
+    <main class="layout">
+      <!-- ============ Controls ============ -->
+      <section class="panel controls" aria-labelledby="controlsTitle">
+        <h2 id="controlsTitle" class="panel-title">Controls</h2>
+
+        <div class="field">
+          <label for="valueInput">Value to push</label>
+          <input
+            id="valueInput"
+            class="input"
+            type="text"
+            maxlength="12"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="e.g. 42"
+          />
+          <span class="hint">Up to 12 characters · press Enter to push</span>
+        </div>
+
+        <div class="btn-row">
+          <button id="pushBtn" class="btn btn--primary" type="button">Push</button>
+          <button id="popBtn" class="btn" type="button">Pop</button>
+          <button id="peekBtn" class="btn" type="button">Peek</button>
+        </div>
+
+        <p id="message" class="message message--ok" role="status" aria-live="polite">
+          Ready — push a value to build the stack.
+        </p>
+
+        <div class="size-block">
+          <div class="size-head">
+            <span>Stack size</span>
+            <strong id="sizeValue">0 / 8</strong>
+          </div>
+          <div class="meter" id="meter">
+            <span id="meterFill"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Stack view ============ -->
+      <section class="panel stage" aria-labelledby="stageTitle">
+        <div class="stage-head">
+          <h2 id="stageTitle" class="panel-title">Stack view</h2>
+          <span class="tag">Fixed capacity · 8</span>
+        </div>
+
+        <div class="stack-wrap">
+          <ol id="stack" class="stack" aria-label="Stack elements, bottom to top"></ol>
+        </div>
+
+        <p class="stage-foot">
+          <span class="arrow arrow--up">▲</span> <strong>TOP</strong> = last element
+          pushed &nbsp;·&nbsp; <span class="arrow arrow--down">▼</span>
+          <strong>BOTTOM</strong> = first element pushed (index 0)
+        </p>
+      </section>
+
+      <!-- ============ History ============ -->
+      <section class="panel history-panel" aria-labelledby="historyTitle">
+        <h2 id="historyTitle" class="panel-title">Operation history</h2>
+        <ul id="history" class="history"></ul>
+        <p id="historyEmpty" class="empty-note">No operations yet — try Push.</p>
+      </section>
+
+      <!-- ============ Explanation ============ -->
+      <section class="panel info" aria-labelledby="lifoTitle">
+        <div class="info-col">
+          <h2 id="lifoTitle" class="panel-title">LIFO — Last In, First Out</h2>
+          <p>
+            A <strong>stack</strong> is a linear data structure where insertion and
+            deletion both happen at one end called the <strong>top</strong>. The element
+            added <em>last</em> is the one removed <em>first</em> — exactly like a stack
+            of plates: you always lift the top plate and never pull one from the middle.
+          </p>
+          <ul class="notes">
+            <li><strong>Push</strong> — inserts an element on top of the stack.</li>
+            <li><strong>Pop</strong> — removes and returns the top element.</li>
+            <li><strong>Peek (Top)</strong> — reads the top element without removing it.</li>
+          </ul>
+        </div>
+
+        <div class="info-col">
+          <h2 class="panel-title">Time complexity</h2>
+          <div class="table-scroll">
+            <table class="cx">
+              <thead>
+                <tr>
+                  <th>Operation</th>
+                  <th>Time</th>
+                  <th>Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Push</td>
+                  <td>O(1)</td>
+                  <td>Places the value at the top index — no shifting needed.</td>
+                </tr>
+                <tr>
+                  <td>Pop</td>
+                  <td>O(1)</td>
+                  <td>Removes only the top element — nothing to search.</td>
+                </tr>
+                <tr>
+                  <td>Peek</td>
+                  <td>O(1)</td>
+                  <td>Reads one known position: the top.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fine">
+            <strong>Stack overflow</strong> happens when you Push at full capacity (8).
+            <strong>Stack underflow</strong> happens when you Pop or Peek an empty stack.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>StackLab · built with plain HTML, CSS and JavaScript — no frameworks, no backend.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
